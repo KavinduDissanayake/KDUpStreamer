@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIApplication {
+public extension UIApplication {
     static var appVersion: String {
         return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "Not Found"
     }
