@@ -11,19 +11,30 @@ import SwiftUI
 public struct UpstreamButtonView<CustomButton: View>: View {
     @ObservedObject private var upstream: UpstreamButton.Upstream
     private let customButtonView: CustomButton?
+    private let displaySections: DisplaySections
     
-    public init(upstream: UpstreamButton.Upstream, customButtonView: CustomButton? = nil) {
+    public enum DisplaySections {
+        case all
+        case whatsNewOnly
+        case descriptionOnly
+    }
+    
+    public init(upstream: UpstreamButton.Upstream, customButtonView: CustomButton? = nil, displaySections: DisplaySections = .all) {
         self.upstream = upstream
         self.customButtonView = customButtonView
+        self.displaySections = displaySections
     }
     
     public var body: some View {
         VStack(alignment: .leading) {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 30) {
-                    component(header: "What's New?", text: upstream.data.releaseNotes)
-                    
-                    component(header: "Description", text: upstream.data.description)
+                    if displaySections == .all || displaySections == .whatsNewOnly {
+                        component(header: "What's New?", text: upstream.data.releaseNotes)
+                    }
+                    if displaySections == .all || displaySections == .descriptionOnly {
+                        component(header: "Description", text: upstream.data.description)
+                    }
                 }
             }
 
