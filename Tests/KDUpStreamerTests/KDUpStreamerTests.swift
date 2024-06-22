@@ -1,12 +1,18 @@
+//
+//  KDUpStreamerTests.swift
+//  KDUpStreamer
+//
+//  Created by KavinduDissanayake on 2024-06-22.
+//  All rights reserved for KDmobileApps.
+//
+
 import XCTest
 @testable import KDUpStreamer
 
 final class KDUpStreamerTests: XCTestCase {
-    func testExample() throws {
-        // XCTest Documentation
-        // https://developer.apple.com/documentation/xctest
-
-        // Defining Test Cases and Test Methods
-        // https://developer.apple.com/documentation/xctest/defining_test_cases_and_test_methods
+    func testFetchStatus() async {
+        let upstream = UpstreamButton.Upstream(appId: "123456")
+        await upstream.fetchStatus(appID: "123456")
+        // Write your assertions here
     }
 }
