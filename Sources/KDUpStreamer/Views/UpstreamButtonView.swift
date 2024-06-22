@@ -55,7 +55,6 @@ public struct UpstreamButtonView<CustomButton: View>: View {
             }
         }
         .padding(24)
-        .background(Color.black.ignoresSafeArea(.all, edges: .all))
     }
     
     private var defaultButton: some View {
@@ -81,12 +80,12 @@ public struct UpstreamButtonView<CustomButton: View>: View {
             Text(header)
                 .font(.largeTitle)
                 .bold()
-                .foregroundColor(.white)
+                .foregroundColor(.primary)
             
             Text(text)
                 .font(.body)
                 .padding(12)
-                .foregroundColor(.white)
+                .foregroundColor(.primary)
                 .cornerRadius(12)
         }
     }
