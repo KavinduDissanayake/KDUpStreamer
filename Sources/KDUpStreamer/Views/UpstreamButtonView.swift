@@ -13,22 +13,15 @@ public struct UpstreamButtonView<CustomButton: View>: View {
     }
     
     // Initializer with custom button view
-    public init(upstream: UpstreamButton.Upstream, customButtonView: CustomButton, displaySections: DisplaySections = .onlyButton) {
+    public init(upstream: UpstreamButton.Upstream, customButtonView: CustomButton? = nil, displaySections: DisplaySections = .onlyButton) {
         self.upstream = upstream
         self.customButtonView = customButtonView
         self.displaySections = displaySections
     }
     
-    // Initializer without custom button view
-    public init(upstream: UpstreamButton.Upstream, displaySections: DisplaySections = .onlyButton) where CustomButton == EmptyView {
-        self.upstream = upstream
-        self.customButtonView = nil
-        self.displaySections = displaySections
-    }
-    
     public var body: some View {
-        if displaySections != .onlyButton {
-            VStack(alignment: .leading) {
+        VStack(alignment: .leading) {
+            if displaySections != .onlyButton {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(alignment: .leading, spacing: 30) {
                         if displaySections == .all || displaySections == .whatsNewOnly {
@@ -41,15 +34,8 @@ public struct UpstreamButtonView<CustomButton: View>: View {
                 }
                 
                 Spacer()
-                
-                if let customButtonView = customButtonView {
-                    customButtonView
-                } else {
-                    defaultButton
-                }
             }
             
-        }else{
             if let customButtonView = customButtonView {
                 customButtonView
             } else {
