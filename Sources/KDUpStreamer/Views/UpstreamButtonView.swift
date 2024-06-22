@@ -1,11 +1,3 @@
-//
-//  UpstreamButtonView.swift
-//  KDUpStreamer
-//
-//  Created by KavinduDissanayake on 2024-06-22.
-//  All rights reserved for KDmobileApps.
-//
-
 import SwiftUI
 
 public struct UpstreamButtonView<CustomButton: View>: View {
@@ -17,31 +9,27 @@ public struct UpstreamButtonView<CustomButton: View>: View {
         case all
         case whatsNewOnly
         case descriptionOnly
+        case onlyButton
     }
     
     // Initializer with custom button view
-    public init(upstream: UpstreamButton.Upstream, customButtonView: CustomButton, displaySections: DisplaySections = .all) {
+    public init(upstream: UpstreamButton.Upstream, customButtonView: CustomButton? = nil, displaySections: DisplaySections = .onlyButton) {
         self.upstream = upstream
         self.customButtonView = customButtonView
         self.displaySections = displaySections
     }
     
-    // Initializer without custom button view
-    public init(upstream: UpstreamButton.Upstream, displaySections: DisplaySections = .all) where CustomButton == EmptyView {
-        self.upstream = upstream
-        self.customButtonView = nil
-        self.displaySections = displaySections
-    }
-    
     public var body: some View {
         VStack(alignment: .leading) {
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack(alignment: .leading, spacing: 30) {
-                    if displaySections == .all || displaySections == .whatsNewOnly {
-                        component(header: "What's New?", text: upstream.data.releaseNotes)
-                    }
-                    if displaySections == .all || displaySections == .descriptionOnly {
-                        component(header: "Description", text: upstream.data.description)
+            if displaySections != .onlyButton {
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(alignment: .leading, spacing: 30) {
+                        if displaySections == .all || displaySections == .whatsNewOnly {
+                            component(header: "What's New?", text: upstream.data.releaseNotes)
+                        }
+                        if displaySections == .all || displaySections == .descriptionOnly {
+                            component(header: "Description", text: upstream.data.description)
+                        }
                     }
                 }
             }
@@ -66,7 +54,7 @@ public struct UpstreamButtonView<CustomButton: View>: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 12)
                     .frame(height: 50)
-                    .foregroundColor(.primary)
+                    .foregroundColor(.blue)
                 
                 Text("Update Now")
                     .foregroundColor(.white)
@@ -86,6 +74,7 @@ public struct UpstreamButtonView<CustomButton: View>: View {
                 .font(.body)
                 .padding(12)
                 .foregroundColor(.primary)
+                .background(Color(.secondarySystemBackground))
                 .cornerRadius(12)
         }
     }
