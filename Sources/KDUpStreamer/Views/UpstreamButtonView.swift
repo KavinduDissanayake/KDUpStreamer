@@ -66,7 +66,7 @@ public struct UpstreamButtonView<CustomButton: View>: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 12)
                     .frame(height: 50)
-                    .foregroundColor(.blue)
+                    .foregroundColor(.primary)
                 
                 Text("Update Now")
                     .foregroundColor(.white)
