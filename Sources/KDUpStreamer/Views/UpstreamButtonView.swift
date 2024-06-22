@@ -13,11 +13,18 @@ public struct UpstreamButtonView<CustomButton: View>: View {
     }
     
     // Initializer with custom button view
-    public init(upstream: UpstreamButton.Upstream, customButtonView: CustomButton? = nil, displaySections: DisplaySections = .onlyButton) {
-        self.upstream = upstream
-        self.customButtonView = customButtonView
-        self.displaySections = displaySections
-    }
+       public init(upstream: UpstreamButton.Upstream, customButtonView: CustomButton, displaySections: DisplaySections = .onlyButton) {
+           self.upstream = upstream
+           self.customButtonView = customButtonView
+           self.displaySections = displaySections
+       }
+       
+       // Initializer without custom button view
+       public init(upstream: UpstreamButton.Upstream, displaySections: DisplaySections = .all) where CustomButton == EmptyView {
+           self.upstream = upstream
+           self.customButtonView = nil
+           self.displaySections = displaySections
+       }
     
     public var body: some View {
         VStack(alignment: .leading) {
