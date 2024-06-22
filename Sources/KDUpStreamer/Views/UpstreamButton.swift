@@ -26,7 +26,7 @@ public class UpstreamButton {
         public func fetchStatus(appID: String) async {
             do {
                 let data = try await iTuneApiManager.getAppInformation(appID: appID)
-                if let firstResult = data.results.first, firstResult.version != UIApplication.appVersion {
+                if let firstResult = data.results.first, await firstResult.version != UIApplication.appVersion {
                     DispatchQueue.main.async {
                         self.updateStatus = .updateAvailable
                         self.data = firstResult
