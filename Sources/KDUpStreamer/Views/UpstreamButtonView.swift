@@ -13,22 +13,22 @@ public struct UpstreamButtonView<CustomButton: View>: View {
     }
     
     // Initializer with custom button view
-       public init(upstream: UpstreamButton.Upstream, customButtonView: CustomButton, displaySections: DisplaySections = .onlyButton) {
-           self.upstream = upstream
-           self.customButtonView = customButtonView
-           self.displaySections = displaySections
-       }
-       
-       // Initializer without custom button view
-       public init(upstream: UpstreamButton.Upstream, displaySections: DisplaySections = .all) where CustomButton == EmptyView {
-           self.upstream = upstream
-           self.customButtonView = nil
-           self.displaySections = displaySections
-       }
+    public init(upstream: UpstreamButton.Upstream, customButtonView: CustomButton, displaySections: DisplaySections = .onlyButton) {
+        self.upstream = upstream
+        self.customButtonView = customButtonView
+        self.displaySections = displaySections
+    }
+    
+    // Initializer without custom button view
+    public init(upstream: UpstreamButton.Upstream, displaySections: DisplaySections = .onlyButton) where CustomButton == EmptyView {
+        self.upstream = upstream
+        self.customButtonView = nil
+        self.displaySections = displaySections
+    }
     
     public var body: some View {
-        VStack(alignment: .leading) {
-            if displaySections != .onlyButton {
+        if displaySections != .onlyButton {
+            VStack(alignment: .leading) {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(alignment: .leading, spacing: 30) {
                         if displaySections == .all || displaySections == .whatsNewOnly {
@@ -39,17 +39,23 @@ public struct UpstreamButtonView<CustomButton: View>: View {
                         }
                     }
                 }
+                
+                Spacer()
+                
+                if let customButtonView = customButtonView {
+                    customButtonView
+                } else {
+                    defaultButton
+                }
             }
-
-            Spacer()
             
+        }else{
             if let customButtonView = customButtonView {
                 customButtonView
             } else {
                 defaultButton
             }
         }
-        .padding(24)
     }
     
     private var defaultButton: some View {
