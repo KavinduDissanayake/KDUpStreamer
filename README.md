@@ -229,7 +229,7 @@ struct ContentView_Previews: PreviewProvider {
 }
 ```
 #### Cover image
-<img align="center" src="https://github.com/KavinduDissanayake/KDUpStreamer">
+<img align="center" src="[https://github.com/KavinduDissanayake/KDUpStreamer](https://github.com/KavinduDissanayake/KDUpStreamer/blob/main/Sources/cover_image.png)">
 
 ## License
 
