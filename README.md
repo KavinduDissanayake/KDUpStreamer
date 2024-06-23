@@ -192,6 +192,8 @@ struct ContentView: View {
                 print("Description: \(upstream.data.description)")
                 print("New App Version: \(upstream.data.version)")
                 print("Build Number: \(UIApplication.appVersion)")
+                print("Is Update Available: \(upstream.isUpdateAvailable)")
+
             }
             .navigationTitle("Upstream Demo")
         }
