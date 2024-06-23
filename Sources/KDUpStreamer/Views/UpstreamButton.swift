@@ -36,6 +36,10 @@ public class UpstreamButton {
                 print("ERROR: ", error.localizedDescription)
             }
         }
+        
+        public var isUpdateAvailable: Bool {
+            return updateStatus == .updateAvailable
+        }
     }
     
     public enum UpdateStatus {
